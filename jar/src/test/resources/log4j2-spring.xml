@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <RollingFile name="RollingFile"
+                     fileName="./logs/application.log"
+                     filePattern="./logs/application-%d{-dd-MMMM-yyyy}-%i.log.gz">
+            <Policies>
+                <!-- rollover on startup, daily and when the file reaches
+                    10 MegaBytes -->
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+                <TimeBasedTriggeringPolicy />
+                <DirectWriteRolloverStrategy maxFiles="10"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+</Configuration>
