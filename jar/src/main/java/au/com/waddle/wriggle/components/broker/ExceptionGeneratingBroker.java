@@ -38,50 +38,55 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * ====================================================================
  */
-package au.com.waddle.wriggle;
+package au.com.waddle.wriggle.components.broker;
 
+import au.com.waddle.wriggle.SampleGeneratedException;
+import au.com.waddle.wriggle.components.broker.configuration.ExceptionGeneratingBrokerConfiguration;
 import org.ikasan.spec.component.endpoint.Broker;
 import org.ikasan.spec.component.endpoint.EndpointException;
+import org.ikasan.spec.configuration.ConfiguredResource;
 
 /**
  * Created by majean on 09/10/2017.
  */
-public class ExceptionGeneratingBroker implements Broker
+public class ExceptionGeneratingBroker implements Broker, ConfiguredResource<ExceptionGeneratingBrokerConfiguration>
 {
-    private boolean shouldThrowExclusionException = false;
-
-    private boolean shouldThrowRecoveryException = false;
-
-    private boolean shouldThrowStoppedInErrorException = false;
+    private ExceptionGeneratingBrokerConfiguration configuration;
+    private String configurationId;
 
     @Override public Object invoke(Object o) throws EndpointException
     {
-        if(shouldThrowExclusionException){
+        if(this.configuration.isShouldThrowExclusionException()){
             throw  new SampleGeneratedException("This exception is thrown to test exclusion.");
         }
 
-        if(shouldThrowRecoveryException){
+        if(this.configuration.isShouldThrowRecoveryException()){
             throw  new EndpointException("This exception is thrown to test recovery.");
         }
 
-        if(shouldThrowStoppedInErrorException){
+        if(this.configuration.isShouldThrowStoppedInErrorException()){
             throw  new RuntimeException("This exception is thrown to test stoppedInError.");
         }
         return o;
     }
 
-    public void setShouldThrowExclusionException(boolean shouldThrowExclusionException)
-    {
-        this.shouldThrowExclusionException = shouldThrowExclusionException;
+    @Override
+    public String getConfiguredResourceId() {
+        return this.configurationId;
     }
 
-    public void setShouldThrowRecoveryException(boolean shouldThrowRecoveryException)
-    {
-        this.shouldThrowRecoveryException = shouldThrowRecoveryException;
+    @Override
+    public void setConfiguredResourceId(String configurationId) {
+        this.configurationId = configurationId;
     }
 
-    public void setShouldThrowStoppedInErrorException(boolean shouldThrowStoppedInErrorException)
-    {
-        this.shouldThrowStoppedInErrorException = shouldThrowStoppedInErrorException;
+    @Override
+    public ExceptionGeneratingBrokerConfiguration getConfiguration() {
+        return this.configuration;
+    }
+
+    @Override
+    public void setConfiguration(ExceptionGeneratingBrokerConfiguration exceptionGeneratingBrokerConfiguration) {
+        this.configuration = exceptionGeneratingBrokerConfiguration;
     }
 }

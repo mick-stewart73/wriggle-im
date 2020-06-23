@@ -40,7 +40,9 @@
  */
 package au.com.waddle.wriggle;
 
+import au.com.waddle.wriggle.components.broker.ExceptionGeneratingBroker;
 import au.com.waddle.wriggle.components.broker.HttpRequestBroker;
+import au.com.waddle.wriggle.components.broker.configuration.ExceptionGeneratingBrokerConfiguration;
 import au.com.waddle.wriggle.components.broker.configuration.HttpRequestBrokerConfiguration;
 import au.com.waddle.wriggle.components.converter.InboundJsonToWriggleInboundRequestConverter;
 import au.com.waddle.wriggle.components.converter.JsonToWriggleInternalRequestConverter;
@@ -146,6 +148,10 @@ public class ModuleConfig
     private Flow getRouterFlow(ModuleBuilder moduleBuilder){
         FlowBuilder flowBuilder = moduleBuilder.getFlowBuilder("Wriggle Request Router Flow");
 
+        ExceptionGeneratingBroker exceptionGeneratingBroker = new ExceptionGeneratingBroker();
+        exceptionGeneratingBroker.setConfiguredResourceId(this.moduleName + "-exceptiion-broker");
+        exceptionGeneratingBroker.setConfiguration(new ExceptionGeneratingBrokerConfiguration());
+
         Flow flow = flowBuilder
                 .withDescription("Route a Wriggle Internal request to the relevant channel.")
                 .withExceptionResolver(builderFactory.getExceptionResolverBuilder()
@@ -156,7 +162,7 @@ public class ModuleConfig
                 .consumer("JMS Consumer", this.createJmsConsumer(wriggleConfiguration.getInboundWriggleInternalRequestPrivate()
                         , "routerFlowConsumer"))
                 .converter("JSON to Wriggle Inbound Request Converter", new JsonToWriggleInternalRequestConverter())
-                .broker("Exception Generating Broker", new ExceptionGeneratingBroker())
+                .broker("Exception Generating Broker", exceptionGeneratingBroker)
                 .singleRecipientRouter("Request Type Router", new RequestTypeRouter())
                     .when("company", builderFactory.getRouteBuilder()
                             .converter("Wriggle Company Inbound Request to JSON Converter", new WriggleInternalRequestToJsonConverter())
