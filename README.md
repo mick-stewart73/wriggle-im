@@ -23,7 +23,7 @@ cd wriggle-im-1.0.0-SNAPSHOT/
 less logs/application.log 
 ```
 
-Once you see "Module url [http://localhost:8099/wriggle-im] running with PID [2312]" in the 
+Once you see "Module url [http://localhost:8099/wriggle-im] running with PID [xxxx]" in the 
 logs the module has started.
 
 Access the simple admin console at http://localhost:8099/wriggle-im with credentials admin/admin.
