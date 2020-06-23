@@ -189,6 +189,7 @@ public class RouterFlowTest extends BaseTest
 
         flowTestRule.consumer("JMS Consumer")
             .converter("JSON to Wriggle Inbound Request Converter")
+            .broker("Exception Generating Broker")
             .router("Request Type Router")
             .converter("Wriggle Account Inbound Request to JSON Converter")
             .producer("Bank Request Producer");
@@ -220,6 +221,7 @@ public class RouterFlowTest extends BaseTest
 
         flowTestRule.consumer("JMS Consumer")
                 .converter("JSON to Wriggle Inbound Request Converter")
+                .broker("Exception Generating Broker")
                 .router("Request Type Router")
                 .converter("Wriggle Company Inbound Request to JSON Converter")
                 .producer("Company Request Producer");
@@ -251,6 +253,7 @@ public class RouterFlowTest extends BaseTest
 
         flowTestRule.consumer("JMS Consumer")
                 .converter("JSON to Wriggle Inbound Request Converter")
+                .broker("Exception Generating Broker")
                 .router("Request Type Router")
                 .converter("Wriggle Ledger Inbound Request to JSON Converter")
                 .producer("Ledger Request Producer");
@@ -282,6 +285,7 @@ public class RouterFlowTest extends BaseTest
 
         flowTestRule.consumer("JMS Consumer")
                 .converter("JSON to Wriggle Inbound Request Converter")
+                .broker("Exception Generating Broker")
                 .router("Request Type Router")
                 .converter("Wriggle Customer Inbound Request to JSON Converter")
                 .producer("Customer Request Producer");
@@ -313,6 +317,7 @@ public class RouterFlowTest extends BaseTest
 
         flowTestRule.consumer("JMS Consumer")
                 .converter("JSON to Wriggle Inbound Request Converter")
+                .broker("Exception Generating Broker")
                 .router("Request Type Router")
                 .converter("Wriggle Invoice Inbound Request to JSON Converter")
                 .producer("Invoice Request Producer");
@@ -344,6 +349,7 @@ public class RouterFlowTest extends BaseTest
 
         flowTestRule.consumer("JMS Consumer")
                 .converter("JSON to Wriggle Inbound Request Converter")
+                .broker("Exception Generating Broker")
                 .router("Request Type Router")
                 .producer("Ignore Unknown Request");
 

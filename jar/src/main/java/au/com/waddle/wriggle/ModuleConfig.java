@@ -157,6 +157,7 @@ public class ModuleConfig
                 .consumer("JMS Consumer", this.createJmsConsumer(wriggleConfiguration.getInboundWriggleInternalRequestPrivate()
                         , "routerFlowConsumer"))
                 .converter("JSON to Wriggle Inbound Request Converter", new JsonToWriggleInternalRequestConverter())
+                .broker("Exception Generating Broker", new ExceptionGeneratingBroker())
                 .singleRecipientRouter("Request Type Router", new RequestTypeRouter())
                     .when("company", builderFactory.getRouteBuilder()
                             .converter("Wriggle Company Inbound Request to JSON Converter", new WriggleInternalRequestToJsonConverter())
@@ -291,7 +292,7 @@ public class ModuleConfig
     }
 
     private Flow createScheduledFlow(ModuleBuilder moduleBuilder){
-        FlowBuilder flowBuilder = moduleBuilder.getFlowBuilder("Scheduled FLow");
+        FlowBuilder flowBuilder = moduleBuilder.getFlowBuilder("Scheduled Flow");
 
         Consumer scheduledConsumer = this.builderFactory.getComponentBuilder()
                 .scheduledConsumer()
