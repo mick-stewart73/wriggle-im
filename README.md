@@ -30,6 +30,7 @@ Access the simple admin console at http://localhost:8099/wriggle-im with credent
 
 Please note you will not be able to start any flows unless you install AMQ bound to localhost on the same machine.
 
+You can import the project into IntelliJ or another IDE of choice and run the unit tests from there and debug to start to dig deeper into the mechanics of Ikasan.
 
 ####  Module Generated Metadata
 
