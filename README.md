@@ -1,9 +1,40 @@
 # wriggle-im
 
+####  Getting Started
+
+
+```
+java -version
+openjdk version "1.8.0_222"
+OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_222-b10)
+OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.222-b10, mixed mode)
+
+git clone https://github.com/mick-stewart73/wriggle-im.git
+cd wriggle-im
+mvn clean install package
+
+cp distribution/target/wriggle-im-distribution-1.0.0-SNAPSHOT-dist.zip /tmp
+cd /tmp
+unzip wriggle-im-distribution-1.0.0-SNAPSHOT-dist.zip 
+
+cd wriggle-im-1.0.0-SNAPSHOT/
+./ikasan.sh start
+
+less logs/application.log 
+```
+
+Once you see "Module url [http://localhost:8099/wriggle-im] running with PID [2312]" in the 
+logs the module has started.
+
+Access the simple admin console at http://localhost:8099/wriggle-im with credentials admin/admin.
+
+Please note you will not be able to start any flows unless you install AMQ on localhost on the same machine.
+
+
 ####  Module Generated Metadata
 
 The json data below is the actual runtime metadata of the module that is published to the
-Ikasan Dashboard at the time the module is started.
+Ikasan Dashboard at the time the module is started. 
 ```json
 {
   "url": "http://localhost:8099/wriggle-im",
