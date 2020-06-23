@@ -28,7 +28,7 @@ logs the module has started.
 
 Access the simple admin console at http://localhost:8099/wriggle-im with credentials admin/admin.
 
-Please note you will not be able to start any flows unless you install AMQ on localhost on the same machine.
+Please note you will not be able to start any flows unless you install AMQ bound to localhost on the same machine.
 
 
 ####  Module Generated Metadata
