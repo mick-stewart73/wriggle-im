@@ -71,7 +71,6 @@ import javax.jms.ConnectionFactory;
 @Configuration
 @ImportResource( {
         "classpath:ikasan-transaction-pointcut-jms.xml",
-        "classpath:ikasan-transaction-pointcut-resubmission.xml",
         "classpath:h2-datasource-conf.xml"
 } )
 public class ModuleConfig
